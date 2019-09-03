@@ -40,8 +40,12 @@ using [this technique with ffmpeg](http://ksloan.net/watermarking-videos-from-th
 example we're using the CGI Environment Variables injected by the `of-watchdog` to allow arguments to be passed in to the script.
 
 There are two query params that can be passed:
-`opacity`: [0.0-1.0] sets the opacity of the watermark, defaults to 0.7
-`image`: URL to the image asset to use, defaults to "https://avatars2.githubusercontent.com/u/27013154?s=50&v=4"
+
+| Param  | Type | Description | Default|
+| ---    | ---  | ---         | ---    |
+| `opacity` | Float | Sets the opacity of the watermark | 0.7 |
+| `image`   | String | URL to the image asset to use | "https://avatars2.githubusercontent.com/u/27013154?s=50&v=4" |
+
 
 ```bash
 faas up -f watermark.yml --build-arg ADDITIONAL_PKG="ffmpeg"
@@ -54,11 +58,11 @@ Will result in a thinking face overlaid as a watermark on your video.
 
 ### Note on Timeouts
 Because video processing can take a while, you might need to increase some settings on your gateway to allow long running connections.  For my demo processing [BigBuckBunny](https://peach.blender.org/about/) I set the following for my gateway:
-
- • readTiemout=305s
- • writeTimeout=305s
- • upstreamTimeout=300s
-
+```
+readTimeout=305s
+writeTimeout=305s
+upstreamTimeout=300s
+```
 
 ### Note on mkv format
 Because I am streaming the result video I'm using a container that does not require end of write metadata.  I
