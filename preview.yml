@@ -1,0 +1,13 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  preview:
+    lang: bash-streaming
+    handler: ./preview
+    image: cconger/preview-gen:latest
+    environment:
+      write_timeout: 30s
+      read_timeout: 30s
+      exec_timeout: 30s

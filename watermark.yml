@@ -1,0 +1,13 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  watermark:
+    lang: bash-streaming
+    handler: ./watermark
+    image: cconger/watermark:latest
+    environment:
+      write_timeout: 5m
+      read_timeout: 5m
+      exec_timeout: 5m
